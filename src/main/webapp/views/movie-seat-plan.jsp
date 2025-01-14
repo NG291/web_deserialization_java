@@ -668,9 +668,6 @@
             </div>
         </div>
     </footer>
-    <!-- ==========Newslater-Section========== -->
-
-
     <script src="assets/js/jquery-3.3.1.min.js"></script>
     <script src="assets/js/modernizr-3.6.0.min.js"></script>
     <script src="assets/js/plugins.js"></script>
@@ -685,7 +682,6 @@
     <script src="assets/js/nice-select.js"></script>
     <script src="assets/js/main.js"></script>
     <script>
-        //getall span sit
         let sitElement  = Array.from(document.querySelectorAll(".single-seat.seat-free-two"))
         let custom_button = document.querySelector(".button_checkout")
         let titile  = document.querySelector(".book-item h3.title")
@@ -726,7 +722,7 @@
                 return;
             }
             const data = {
-               MovieId: params.get("movieID"),
+               MovieId: params.get("movieId"),
                Seats : Seats,
             }
             fetch("movie-checkout",{
@@ -738,7 +734,10 @@
             })
                 .then(response =>{
                     if (response.status === 200){
-                        console.log("ok");
+                        alert("Booking Successfully , then please checkout your order")
+                        window.location = "movie-checkout"
+                    }else{
+                        alert("Đã xảy ra lỗi")
                     }
                 })
         })

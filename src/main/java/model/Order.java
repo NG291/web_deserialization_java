@@ -7,11 +7,12 @@ public class Order implements Serializable {
     private final int orderId;
     private User customer;
     private Ticket ticket;
-
+    private double finalPrice;
     public Order(User customer, Ticket ticket) {
         this.orderId = (int) generateId();
         this.customer = customer;
         this.ticket = ticket;
+        this.finalPrice= ticket.getPrice() + 15;
     }
     private static synchronized long generateId() {
         return ++counter;
@@ -25,5 +26,4 @@ public class Order implements Serializable {
     public Ticket getTicket() {
         return ticket;
     }
-
 }

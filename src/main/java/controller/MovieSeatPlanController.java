@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public class MovieSeatPlanController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer movieId = Integer.valueOf(req.getParameter("movieID"));
+        Integer movieId = Integer.valueOf(req.getParameter("movieId"));
         try {
             MovieDao moviedao = new MovieDao();
             Movie movie = moviedao.findById(movieId);

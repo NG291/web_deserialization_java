@@ -18,7 +18,7 @@ public class OrderDao {
         this.connection = Database.getConnection();
         assert connection != null;
     }
-    public boolean saveOrder(Order order) throws SQLException, ClassNotFoundException, IOException {
+    public String saveOrder(Order order) throws SQLException, ClassNotFoundException, IOException {
 
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
@@ -27,35 +27,35 @@ public class OrderDao {
         String encoded = Base64.getEncoder().encodeToString(serializedObject);
         System.out.println(encoded);
 
-        String query = "INSERT INTO `order` (orderId,userId,data) VALUES (?,?,?)";
+        String query = "INSERT INTO `order` (orderId,customerId,data) VALUES (?,?,?)";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, order.getOrderId());
         preparedStatement.setInt(2,order.getCustomer().getUser_id());
         preparedStatement.setString(3, encoded);
         int resultSet = preparedStatement.executeUpdate();
         if(resultSet > 0) {
-            return true;
+            return encoded;
         }
-        return false;
+        return "Falid";
     }
-    public boolean updateOrder(Order order) throws SQLException, ClassNotFoundException, IOException {
+    public String updateOrder(Order order) throws SQLException, ClassNotFoundException, IOException {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
         objectOutputStream.writeObject(order);
         byte[] serializedObject = byteArrayOutputStream.toByteArray();
         String encoded = Base64.getEncoder().encodeToString(serializedObject);
-        String query = "UPDATE `order` set data =? where userId =?";
+        String query = "UPDATE `order` set data =? where customerId =?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setString(1, encoded);
         preparedStatement.setInt(2,order.getCustomer().getUser_id());
         int resultSet = preparedStatement.executeUpdate();
         if(resultSet > 0) {
-            return true;
+            return encoded;
         }
-        return false;
+        return "Falid";
     }
     public boolean exitsOrder(Order order) throws SQLException, ClassNotFoundException, IOException {
-        String query = "SELECT * FROM `order` WHERE userId =?";
+        String query = "SELECT * FROM `order` WHERE customerId =?";
         PreparedStatement preparedStatement = connection.prepareStatement(query);
         preparedStatement.setInt(1, order.getCustomer().getUser_id());
         ResultSet resultSet = preparedStatement.executeQuery();

@@ -274,7 +274,7 @@
                         <p><a href="#0">Rate It</a></p>
                     </div>
                 </div>
-                <a href="movie-seat-plan?movieID=${movie.getMovieId()}" class="custom-button">book tickets</a>
+                <a href="movie-seat-plan?movieId=${movie.getMovieId()}" class="custom-button">book tickets</a>
             </div>
         </div>
     </section>

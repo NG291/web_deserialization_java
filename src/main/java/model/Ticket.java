@@ -34,6 +34,38 @@ public class Ticket implements Serializable {
         this.id = id;
     }
 
+    public void setMovie(Movie movie) {
+        this.movie = movie;
+    }
+
+    public String getShowTime() {
+        return showTime;
+    }
+
+    public void setShowTime(String showTime) {
+        this.showTime = showTime;
+    }
+
+    public String getCinema() {
+        return cinema;
+    }
+
+    public void setCinema(String cinema) {
+        this.cinema = cinema;
+    }
+
+    public void setSeatNumber(List<String> seatNumber) {
+        this.seatNumber = seatNumber;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public void displayTicketDetails() {
         System.out.println("Ticket ID: " + id);
         System.out.println("Movie: " + movie.getTitle());

@@ -552,7 +552,4 @@
 
     </script>
 </body>
-
-
-<!-- Mirrored from pixner.net/boleto/demo/movie-ticket-plan by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 21 Mar 2024 12:43:34 GMT -->
 </html>

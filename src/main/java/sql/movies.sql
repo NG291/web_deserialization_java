@@ -20,6 +20,7 @@ CREATE TABLE Users (
 CREATE TABLE Ticket (
                         ticket_id int PRIMARY KEY,
                         movieId INT NOT NULL,
+                        seats TEXT not null,
                         showTime DATETIME,
                         cinema VARCHAR(255),
                         price DOUBLE,
@@ -27,17 +28,10 @@ CREATE TABLE Ticket (
 );
 CREATE TABLE `Order` (
                          orderId INT AUTO_INCREMENT PRIMARY KEY,
+                         data Text not null ,
+                         createAt Timestamp DEFAULT CURRENT_TIMESTAMP,
                          customerId INT NOT NULL,
-                         ticketId int NOT NULL,
-                         FOREIGN KEY (customerId) REFERENCES Users(user_Id),
-                         FOREIGN KEY (ticketId) REFERENCES Ticket(ticket_id)
-);
-Alter TABLE `order` modify ticketId int;
-CREATE TABLE Ticket_Seats (
-                              ticketId INT NOT NULL,
-                              seatNumber VARCHAR(50) NOT NULL,
-                              PRIMARY KEY (ticketId, seatNumber),
-                              FOREIGN KEY (ticketId) REFERENCES Ticket(ticket_id) ON DELETE CASCADE
+                         FOREIGN KEY (customerId) REFERENCES Users(user_Id)
 );
 CREATE TABLE Tokens (
                         token_id INT AUTO_INCREMENT PRIMARY KEY,

@@ -29,7 +29,7 @@ public class MovieDao {
         List<Movie> movies = new ArrayList<Movie>();
         while (resultSet.next()) {
             //get data
-            Integer movieID = resultSet.getInt("movieId");
+            Integer movieId = resultSet.getInt("movieId");
             String title = resultSet.getString("title");
             String poster = resultSet.getString("posterPath");
             String description = resultSet.getString("description");
@@ -37,14 +37,14 @@ public class MovieDao {
             String duration =  resultSet.getString("duration");
 
             //tao object
-            Movie movie = new Movie(movieID,title,poster,releaseDate,true,description,duration);
+            Movie movie = new Movie(movieId,title,poster,releaseDate,true,description,duration);
             //add object
                 movies.add(movie);
         }
         return movies;
     }
-    public Movie findById(Integer movieID) throws SQLException, ClassNotFoundException {
-        String query = "SELECT * FROM `movies` WHERE `movieId`="+movieID;
+    public Movie findById(Integer movieId) throws SQLException, ClassNotFoundException {
+        String query = "SELECT * FROM `movies` WHERE `movieId`="+movieId;
         Statement stmt = connection.createStatement();
         ResultSet resultSet =  stmt.executeQuery(query);
         while (resultSet.next()) {
